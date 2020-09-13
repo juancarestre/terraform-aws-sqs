@@ -12,6 +12,16 @@ variable "application" {
   description = "Application (e.g. `cd` or `clouddrove`)."
 }
 
+variable "account_id" {
+  type        = string
+  description = "aws region"
+}
+
+variable "aws_region" {
+  type        = string
+  description = "aws region"
+}
+
 variable "environment" {
   type        = string
   default     = ""
@@ -86,11 +96,11 @@ variable "receive_wait_time_seconds" {
   description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds)."
 }
 
-variable "policy" {
-  type        = string
-  default     = ""
-  description = "The JSON policy for the SQS queue."
-}
+# variable "policy" {
+#   type        = string
+#   default     = ""
+#   description = "The JSON policy for the SQS queue."
+# }
 
 variable "redrive_policy" {
   type        = string
