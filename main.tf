@@ -27,7 +27,7 @@ resource "aws_sqs_queue" "default" {
   max_message_size                  = var.max_message_size
   delay_seconds                     = var.delay_seconds
   receive_wait_time_seconds         = var.receive_wait_time_seconds
-  policy                            = var.policy
+  policy                            = data.aws_iam_policy_document.document.json
   redrive_policy                    = var.redrive_policy
   fifo_queue                        = var.fifo_queue
   content_based_deduplication       = var.content_based_deduplication
@@ -35,3 +35,17 @@ resource "aws_sqs_queue" "default" {
   kms_data_key_reuse_period_seconds = var.kms_data_key_reuse_period_seconds
   tags                              = module.labels.tags
 }
+    
+  data "aws_iam_policy_document" "document" {
+    version = "2012-10-17"
+    statement {
+      sid    = "First"
+      effect = "Allow"
+      principals {
+        type        = "AWS"
+        identifiers = ["*"]
+      }
+      actions   = ["sqs:*"]
+      resources = ["arn:aws:sqs:${var.aws_region}:${var.account_id}:${module.labels.id}"]
+    }    
+    
