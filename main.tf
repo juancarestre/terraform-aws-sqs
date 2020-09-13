@@ -48,4 +48,4 @@ data "aws_iam_policy_document" "document" {
     actions   = ["sqs:*"]
     resources = ["arn:aws:sqs:${var.aws_region}:${var.account_id}:${module.labels.id}"]
   }    
-    
+}
