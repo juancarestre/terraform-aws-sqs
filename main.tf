@@ -36,16 +36,16 @@ resource "aws_sqs_queue" "default" {
   tags                              = module.labels.tags
 }
     
-  data "aws_iam_policy_document" "document" {
-    version = "2012-10-17"
-    statement {
-      sid    = "First"
-      effect = "Allow"
-      principals {
-        type        = "AWS"
-        identifiers = ["*"]
-      }
-      actions   = ["sqs:*"]
-      resources = ["arn:aws:sqs:${var.aws_region}:${var.account_id}:${module.labels.id}"]
-    }    
+data "aws_iam_policy_document" "document" {
+  version = "2012-10-17"
+  statement {
+    sid    = "First"
+    effect = "Allow"
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+    actions   = ["sqs:*"]
+    resources = ["arn:aws:sqs:${var.aws_region}:${var.account_id}:${module.labels.id}"]
+  }    
     
