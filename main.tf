@@ -33,7 +33,7 @@ resource "aws_sqs_queue" "default" {
   content_based_deduplication       = var.content_based_deduplication
   kms_master_key_id                 = var.kms_master_key_id
   kms_data_key_reuse_period_seconds = var.kms_data_key_reuse_period_seconds
-  tags                              = module.labels.tags
+  tags                              = var.tags
 }
     
 data "aws_iam_policy_document" "document" {
